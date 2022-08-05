@@ -15,8 +15,6 @@ export const LoadAssets = ({ children }: LoadAssetsProps) => {
     MontserratSemiBold: require('../assets/fonts/Montserrat-SemiBold.ttf'),
   });
 
-  console.log(loaded);
-
   if (loaded) {
     return <>{children}</>;
   }
