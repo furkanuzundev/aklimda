@@ -18,3 +18,5 @@ interface Colors {
   mauvelous: string;
   montecarlo: string;
 }
+
+interface Routes {}
