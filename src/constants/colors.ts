@@ -3,6 +3,7 @@ export default <Colors>{
   halfBlack: 'rgba(37,37,37,0.5)',
   grey: '#3B3B3B',
   white: '#FFF',
+  halfWhite: 'rgba(255,255,255,0.5)',
   red: '#E05B5B',
   monalisa: '#FFAB91',
   chardonnay: '#FFCC80',

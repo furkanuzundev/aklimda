@@ -9,6 +9,7 @@ interface Colors {
   black: string;
   halfBlack: string;
   white: string;
+  halfWhite: string;
   red: string;
   grey: string;
   monalisa: string;

@@ -1,19 +1,46 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ViewStyle } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ViewStyle,
+  TouchableOpacity,
+} from 'react-native';
 import colors from '../constants/colors';
 
 import { Ionicons } from '@expo/vector-icons';
+import { wp } from '../constants/screen';
+import fonts from '../constants/fonts';
 
 interface HeaderButtonProps {
-  iconName: React.ComponentProps<typeof Ionicons>['name'];
+  iconName?: React.ComponentProps<typeof Ionicons>['name'];
   containerStyle?: ViewStyle;
+  onPress?: () => void;
+  text?: string;
 }
 
-const HeaderButton = ({ iconName, containerStyle }: HeaderButtonProps) => {
+const HeaderButton = ({
+  iconName,
+  containerStyle,
+  onPress,
+  text,
+}: HeaderButtonProps) => {
+  if (iconName) {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={[styles.container, containerStyle]}>
+          <Ionicons name={iconName} size={wp('6%')} color={colors.white} />
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Ionicons name={iconName} size={24} color={colors.white} />
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View style={[styles.textContainer, containerStyle]}>
+        <Text style={styles.text}>{text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -21,11 +48,24 @@ export default HeaderButton;
 
 const styles = StyleSheet.create({
   container: {
-    width: 50,
-    height: 50,
+    width: wp('13%'),
+    height: wp('13%'),
     borderRadius: 15,
     backgroundColor: colors.grey,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  textContainer: {
+    height: wp('13%'),
+    backgroundColor: colors.grey,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    borderRadius: 15,
+  },
+  text: {
+    fontSize: wp('4%'),
+    color: colors.white,
+    fontFamily: fonts.regular,
   },
 });

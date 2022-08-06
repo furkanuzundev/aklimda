@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import colors from '../../../../constants/colors';
@@ -10,6 +11,7 @@ interface TripleProps {
 }
 
 const Triple = ({ data }: TripleProps) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.row}>
       <View style={styles.column}>
