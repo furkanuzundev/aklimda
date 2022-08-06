@@ -1,9 +1,20 @@
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import colors from '../../constants/colors';
+import { Header } from './Header';
 
 export const NoteList = () => {
   return (
-    <View>
-      <Text>NoteList</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.black,
+    padding: 20,
+  },
+});
