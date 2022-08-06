@@ -7,6 +7,7 @@ interface Fonts {
 
 interface Colors {
   black: string;
+  halfBlack: string;
   white: string;
   red: string;
   grey: string;
@@ -19,4 +20,10 @@ interface Colors {
   montecarlo: string;
 }
 
-interface Routes {}
+interface NoteProps {
+  id: number;
+  creationTime: Date;
+  title: string;
+  content: string;
+  color: string;
+}

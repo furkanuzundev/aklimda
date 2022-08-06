@@ -1,5 +1,6 @@
 export default <Colors>{
   black: '#252525',
+  halfBlack: 'rgba(37,37,37,0.5)',
   grey: '#3B3B3B',
   white: '#FFF',
   red: '#E05B5B',
