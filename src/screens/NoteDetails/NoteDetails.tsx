@@ -17,6 +17,8 @@ import Title from './Title';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { updateList } from '../../redux/notes/actions';
+import useMoment from '../../hooks/useMoment';
+import fonts from '../../constants/fonts';
 
 export const NoteDetails = (navigation: any) => {
   const { list } = useSelector((state: RootState) => state.notes);
@@ -50,8 +52,11 @@ export const NoteDetails = (navigation: any) => {
     <SafeAreaView style={styles.container}>
       <Header {...{ note }} />
       <KeyboardAvoidingView behavior='padding' style={styles.avoidingView}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Title {...{ title, onTitleChange, onEdited, edited }} />
+          <Text style={styles.creationTime}>
+            {useMoment(note.creationTime, 'LL')}
+          </Text>
           <Content {...{ content, onContentChange, onEdited, edited }} />
         </ScrollView>
         {edited && <Tick {...{ onSave }} />}
@@ -68,5 +73,9 @@ const styles = StyleSheet.create({
   },
   avoidingView: {
     flex: 1,
+  },
+  creationTime: {
+    color: colors.halfWhite,
+    fontFamily: fonts.medium,
   },
 });

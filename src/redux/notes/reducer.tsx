@@ -2,10 +2,12 @@ import * as types from './types';
 
 export interface NotesState {
   list: NoteProps[];
+  searchText: string;
 }
 
 const initialState: NotesState = {
   list: [],
+  searchText: null,
 };
 
 export default function (
@@ -24,6 +26,11 @@ export default function (
       return {
         ...state,
         list: payload,
+      };
+    case types.SET_SEARCH:
+      return {
+        ...state,
+        searchText: payload,
       };
     default:
       return state;

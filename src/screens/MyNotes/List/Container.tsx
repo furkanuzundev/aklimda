@@ -16,8 +16,6 @@ interface ListProps {}
 const List = ({}: ListProps) => {
   const { list } = useSelector((state: RootState) => state.notes);
 
-  console.log('list : ', list.length);
-
   if (list.length === 0) {
     return <ListEmpty />;
   } else if (list.length === 1) {

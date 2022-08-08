@@ -9,3 +9,8 @@ export const updateList = (list: NoteProps[]) => ({
   type: types.UPDATE_ITEM,
   payload: list,
 });
+
+export const setSearch = (searchText: string) => ({
+  type: types.SET_SEARCH,
+  payload: searchText,
+});
