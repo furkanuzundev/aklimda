@@ -22,17 +22,17 @@ const Main = ({ list }: MainProps) => {
         <View>
           {list
             .slice(4)
-            .filter((_, i) => i % 2 !== 0)
+            .filter((_, i) => i % 2 === 0)
             .map((item, index) => {
-              return <S5 {...{ item }} />;
+              return <S6 {...{ item }} />;
             })}
         </View>
         <View>
           {list
             .slice(4)
-            .filter((_, i) => i % 2 === 0)
+            .filter((_, i) => i % 2 !== 0)
             .map((item, index) => {
-              return <S6 {...{ item }} />;
+              return <S5 {...{ item }} />;
             })}
         </View>
       </View>

@@ -4,8 +4,20 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../../../constants/colors';
 import fonts from '../../../constants/fonts';
 
-const ListEmpty = () => {
+interface ListEmptyProps {
+  searchText: string;
+}
+
+const ListEmpty = ({ searchText }: ListEmptyProps) => {
   const navigation = useNavigation();
+
+  if (searchText) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Bu isimde bir not yok.</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>

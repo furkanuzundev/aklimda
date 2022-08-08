@@ -1,13 +1,25 @@
 import * as types from './types';
+import moment from 'moment';
 
 export interface NotesState {
   list: NoteProps[];
   searchText: string;
+  sortOptions: SortOptions[];
+  sortBy: number;
 }
 
 const initialState: NotesState = {
   list: [],
   searchText: null,
+  sortOptions: [
+    {
+      text: 'Oluşturma tarihi ↓',
+    },
+    {
+      text: 'Oluşturma tarihi ↑',
+    },
+  ],
+  sortBy: 0,
 };
 
 export default function (
@@ -31,6 +43,11 @@ export default function (
       return {
         ...state,
         searchText: payload,
+      };
+    case types.SET_SORT:
+      return {
+        ...state,
+        sortBy: payload,
       };
     default:
       return state;

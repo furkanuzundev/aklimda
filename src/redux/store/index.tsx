@@ -7,6 +7,7 @@ import reducers from '../reducers';
 const store = createStore(reducers, applyMiddleware(thunk));
 const persistor = persistStore(store);
 
+
 export { store, persistor };
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -14,3 +14,8 @@ export const setSearch = (searchText: string) => ({
   type: types.SET_SEARCH,
   payload: searchText,
 });
+
+export const setSort = (sortBy: number) => ({
+  type: types.SET_SORT,
+  payload: sortBy,
+});

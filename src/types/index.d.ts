@@ -28,3 +28,7 @@ interface NoteProps {
   content: string;
   color: string;
 }
+
+interface SortOptions {
+  text: string;
+}

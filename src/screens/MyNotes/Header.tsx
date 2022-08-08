@@ -11,34 +11,31 @@ import HeaderButton from '../../components/HeaderButton';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 import { hp, wp } from '../../constants/screen';
-import Modal from 'react-native-modal';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import SearchBar from './SearchBar';
+import { setSearch } from '../../redux/notes/actions';
+import { useDispatch } from 'react-redux';
+import SortBy from './SortByModal';
 
 interface HeaderProps {}
 
 export const Header = (props: HeaderProps) => {
+  const dispatch = useDispatch();
+
   const [searchOpened, setSearchOpened] = useState<boolean>(false);
   const [sortOpened, setSortOpened] = useState<boolean>(false);
 
-  const inputRef = useRef();
-  const insets = useSafeAreaInsets();
+  const onSearchPress = () => {
+    if (searchOpened) {
+      dispatch(setSearch(null));
+    }
+    setSearchOpened(!searchOpened);
+  };
 
-  const onSearchPress = () => setSearchOpened(!searchOpened);
   const onSortPress = () => setSortOpened(!sortOpened);
 
   if (searchOpened) {
-    return (
-      <View style={styles.searchContainer}>
-        <TextInput
-          ref={inputRef}
-          placeholder='Notlarımda ara...'
-          placeholderTextColor={colors.halfBlack}
-          style={styles.input}
-          autoFocus
-        />
-        <HeaderButton iconName='close' onPress={onSearchPress} />
-      </View>
-    );
+    return <SearchBar {...{ onSearchPress }} />;
   }
 
   return (
@@ -54,45 +51,13 @@ export const Header = (props: HeaderProps) => {
           <HeaderButton iconName='search' onPress={onSearchPress} />
         </View>
       </View>
-      {sortOpened && (
-        <Modal
-          isVisible={sortOpened}
-          onBackdropPress={onSortPress}
-          animationIn={'slideInUp'}
-          coverScreen
-          style={{
-            margin: 0,
-            justifyContent: 'flex-end',
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: colors.white,
-              paddingBottom: insets.bottom,
-              padding: 20,
-            }}
-          >
-            <Text style={styles.sortTitle}>Şuna göre sırala;</Text>
-            <View style={styles.optionsContainer}>
-              <Text>Oluşturma tarihi</Text>
-              <Text>Güncelleme Tarihi</Text>
-              <Text>Diğer</Text>
-            </View>
-          </View>
-        </Modal>
-      )}
+      {sortOpened && <SortBy {...{ onSortPress }} />}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  optionsContainer: {
-    paddingVertical: 20,
-  },
-  sortTitle: {
-    fontFamily: fonts.semiBold,
-    fontSize: 24,
-  },
+
   container: {
     height: hp('8%'),
     justifyContent: 'center',
