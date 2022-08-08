@@ -8,9 +8,10 @@ import DeleteModal from './DeleteModal';
 
 interface HeaderProps {
   note: NoteProps;
+  onEdited: () => void;
 }
 
-const Header = ({ note }: HeaderProps) => {
+const Header = ({ note, onEdited }: HeaderProps) => {
   const [visible, setVisible] = useState<boolean>(false);
   const navigation = useNavigation();
 
@@ -21,11 +22,18 @@ const Header = ({ note }: HeaderProps) => {
   return (
     <View style={styles.container}>
       <HeaderButton iconName='arrow-back' onPress={back} />
-      <HeaderButton
-        iconName='trash'
-        onPress={onModalOpen}
-        iconColor={colors.red}
-      />
+      <View style={styles.row}>
+        <HeaderButton
+          iconName='create'
+          containerStyle={{ marginRight: 10 }}
+          onPress={onEdited}
+        />
+        <HeaderButton
+          iconName='trash'
+          onPress={onModalOpen}
+          iconColor={colors.red}
+        />
+      </View>
       <DeleteModal {...{ visible, note, onModalClose }} />
     </View>
   );
@@ -39,5 +47,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: hp('8%'),
     alignItems: 'center',
+  },
+  row: {
+    flexDirection: 'row',
   },
 });

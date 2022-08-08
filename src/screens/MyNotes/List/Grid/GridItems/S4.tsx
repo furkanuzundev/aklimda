@@ -33,15 +33,16 @@ export default S4;
 const styles = StyleSheet.create({
   container: {
     height: wp('32%'),
-    marginVertical: 10,
+    marginTop: 10,
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     justifyContent: 'space-between',
   },
   title: {
     fontSize: 26,
     fontFamily: fonts.regular,
     color: colors.black,
+    flex: 1,
   },
   creationTime: {
     color: colors.halfBlack,

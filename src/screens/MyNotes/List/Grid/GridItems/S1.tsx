@@ -33,7 +33,7 @@ export default S1;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     width: wp('42%'),
     height: wp('22%'),
     justifyContent: 'space-between',
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: fonts.regular,
     color: colors.black,
+    flex: 1,
   },
   creationTime: {
     color: colors.halfBlack,

@@ -33,19 +33,22 @@ export default S6;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     width: wp('46%'),
     justifyContent: 'space-between',
+    marginTop: 10,
   },
   title: {
     fontSize: 16,
     fontFamily: fonts.medium,
     color: colors.black,
+    flex: 1,
   },
   creationTime: {
     color: colors.halfBlack,
     fontFamily: fonts.medium,
     marginTop: 20,
     textAlign: 'right',
+    fontSize: 12,
   },
 });

@@ -33,9 +33,10 @@ export default S5;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     width: wp('42%'),
     justifyContent: 'space-between',
+    marginTop: 10,
   },
   title: {
     fontSize: 16,
@@ -47,5 +48,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.medium,
     marginTop: 20,
     textAlign: 'right',
+    fontSize: 12,
   },
 });

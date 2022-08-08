@@ -5,6 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
+  Platform,
+  Keyboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,14 +46,17 @@ export const NoteDetails = (navigation: any) => {
     currentNote.content = content;
 
     dispatch(updateList(currentList));
-
+    Keyboard.dismiss();
     isEdited(false);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header {...{ note }} />
-      <KeyboardAvoidingView behavior='padding' style={styles.avoidingView}>
+      <Header {...{ note, onEdited }} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.avoidingView}
+      >
         <ScrollView showsVerticalScrollIndicator={false}>
           <Title {...{ title, onTitleChange, onEdited, edited }} />
           <Text style={styles.creationTime}>
@@ -70,6 +75,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.black,
     padding: 20,
+  },
+  contentContainerStyle: {
+    flex: 1,
   },
   avoidingView: {
     flex: 1,
