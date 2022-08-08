@@ -5,15 +5,15 @@ import fonts from '../../../../constants/fonts';
 import useMoment from '../../../../hooks/useMoment';
 
 interface SingleProps {
-  data: NoteProps;
+  list: NoteProps[];
 }
 
-const Single = ({ data }: SingleProps) => {
+const Single = ({ list }: SingleProps) => {
   return (
-    <View style={[styles.container, { backgroundColor: data.color }]}>
-      <Text style={styles.title}>{data.title}</Text>
+    <View style={[styles.container, { backgroundColor: list[0].color }]}>
+      <Text style={styles.title}>{list[0].title}</Text>
       <Text style={styles.creationTime}>
-        {useMoment(data.creationTime, 'LL')}
+        {useMoment(list[0].creationTime, 'LL')}
       </Text>
     </View>
   );

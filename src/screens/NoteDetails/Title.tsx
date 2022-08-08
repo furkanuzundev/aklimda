@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 
 interface TitleProps {
+  title: string;
   onTitleChange: (title: string) => void;
+  onEdited: () => void;
+  edited: boolean;
 }
 
-const Title = ({ onTitleChange }: TitleProps) => {
+const Title = ({ title, onTitleChange, onEdited, edited }: TitleProps) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -15,9 +18,12 @@ const Title = ({ onTitleChange }: TitleProps) => {
         placeholder='Başlık'
         style={styles.input}
         multiline
+        editable={edited}
         maxLength={80}
+        value={title}
         scrollEnabled={false}
         onChangeText={onTitleChange}
+        onPressIn={onEdited}
       />
     </View>
   );

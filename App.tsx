@@ -3,12 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { LoadAssets } from './src/components';
 import { Routes } from './src/navigation';
-import fonts from './src/constants/fonts';
+import { Provider } from 'react-redux';
+
+import { store, persistor } from './src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export default function App() {
   return (
     <LoadAssets>
-      <Routes />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Routes />
+        </PersistGate>
+      </Provider>
     </LoadAssets>
   );
 }

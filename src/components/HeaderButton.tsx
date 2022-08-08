@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ViewStyle,
   TouchableOpacity,
+  OpaqueColorValue,
 } from 'react-native';
 import colors from '../constants/colors';
 
@@ -14,6 +15,7 @@ import fonts from '../constants/fonts';
 
 interface HeaderButtonProps {
   iconName?: React.ComponentProps<typeof Ionicons>['name'];
+  iconColor?: string | OpaqueColorValue;
   containerStyle?: ViewStyle;
   onPress?: () => void;
   text?: string;
@@ -24,12 +26,17 @@ const HeaderButton = ({
   containerStyle,
   onPress,
   text,
+  iconColor,
 }: HeaderButtonProps) => {
   if (iconName) {
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[styles.container, containerStyle]}>
-          <Ionicons name={iconName} size={wp('6%')} color={colors.white} />
+          <Ionicons
+            name={iconName}
+            size={wp('6%')}
+            color={iconColor || colors.white}
+          />
         </View>
       </TouchableOpacity>
     );

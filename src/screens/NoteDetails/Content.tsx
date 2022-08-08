@@ -1,37 +1,50 @@
-import { useEffect, useState } from 'react';
+import * as React from 'react';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 
-interface TitleProps {
-  onTitleChange: (title: string) => void;
+interface ContentProps {
+  content: string;
+  onContentChange: (title: string) => void;
+  onEdited: () => void;
+  edited: boolean;
 }
 
-const Title = ({ onTitleChange }: TitleProps) => {
+const Content = ({
+  content,
+  onContentChange,
+  onEdited,
+  edited,
+}: ContentProps) => {
+  console.log('content: ', content);
   return (
     <View style={styles.container}>
       <TextInput
         placeholderTextColor={colors.halfWhite}
-        placeholder='Başlık'
+        placeholder='Birşeyler yaz...'
         style={styles.input}
         multiline
-        maxLength={80}
+        editable={edited}
+        value={content}
         scrollEnabled={false}
-        onChangeText={onTitleChange}
+        onChangeText={onContentChange}
+        onPressIn={onEdited}
       />
     </View>
   );
 };
 
-export default Title;
+export default Content;
 
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
+    flex: 1,
   },
   input: {
-    fontSize: 40,
+    fontSize: 20,
     fontFamily: fonts.regular,
     color: colors.white,
+    flex: 1,
   },
 });

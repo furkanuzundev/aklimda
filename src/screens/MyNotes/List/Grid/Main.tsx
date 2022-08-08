@@ -6,11 +6,11 @@ import fonts from '../../../../constants/fonts';
 import { hp, wp } from '../../../../constants/screen';
 import useMoment from '../../../../hooks/useMoment';
 
-interface FeaturedProps {
+interface MainProps {
   list: NoteProps[];
 }
 
-const Featured = ({ list }: FeaturedProps) => {
+const Main = ({ list }: MainProps) => {
   const navigation = useNavigation();
   return (
     <View>
@@ -46,19 +46,23 @@ const Featured = ({ list }: FeaturedProps) => {
           </Text>
         </View>
       </View>
-      <View
-        style={[styles.featuredContainer, { backgroundColor: list[3].color }]}
+      <TouchableOpacity
+        onPress={() => navigation.navigate('NoteDetails', { note: list[3] })}
       >
-        <Text style={styles.featuredTitle}>{list[3].title}</Text>
-        <Text style={styles.mainCreationTime}>
-          {useMoment(list[3].creationTime, 'LL')}
-        </Text>
-      </View>
+        <View
+          style={[styles.featuredContainer, { backgroundColor: list[3].color }]}
+        >
+          <Text style={styles.featuredTitle}>{list[3].title}</Text>
+          <Text style={styles.mainCreationTime}>
+            {useMoment(list[3].creationTime, 'LL')}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default Featured;
+export default Main;
 
 const styles = StyleSheet.create({
   row: {

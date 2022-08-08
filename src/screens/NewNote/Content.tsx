@@ -3,9 +3,11 @@ import { Text, View, StyleSheet, TextInput } from 'react-native';
 import colors from '../../constants/colors';
 import fonts from '../../constants/fonts';
 
-interface ContentProps {}
+interface ContentProps {
+  onContentChange: (title: string) => void;
+}
 
-const Content = (props: ContentProps) => {
+const Content = ({ onContentChange }: ContentProps) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -13,6 +15,8 @@ const Content = (props: ContentProps) => {
         placeholder='Birşeyler yaz...'
         style={styles.input}
         multiline
+        scrollEnabled={false}
+        onChangeText={onContentChange}
       />
     </View>
   );

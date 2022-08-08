@@ -22,7 +22,7 @@ interface Colors {
 }
 
 interface NoteProps {
-  id: number;
+  id: string;
   creationTime: Date;
   title: string;
   content: string;

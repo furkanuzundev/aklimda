@@ -1,3 +1,3 @@
-import { Details } from './Details';
+import { NoteDetails } from './NoteDetails';
 
-export default Details;
+export default NoteDetails;

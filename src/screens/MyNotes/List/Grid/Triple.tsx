@@ -1,37 +1,38 @@
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../../../../constants/colors';
 import fonts from '../../../../constants/fonts';
 import { hp, wp } from '../../../../constants/screen';
 import useMoment from '../../../../hooks/useMoment';
 
 interface TripleProps {
-  data: NoteProps | NoteProps[];
+  list: NoteProps[];
 }
 
-const Triple = ({ data }: TripleProps) => {
-  const navigation = useNavigation();
+const Triple = ({ list }: TripleProps) => {
   return (
     <View style={styles.row}>
       <View style={styles.column}>
-        <View style={[styles.container, { backgroundColor: data[0].color }]}>
-          <Text style={styles.title}>{data[0].title}</Text>
+        <TouchableOpacity>
+          <View style={[styles.container, { backgroundColor: list[0].color }]}>
+            <Text style={styles.title}>{list[0].title}</Text>
+            <Text style={styles.creationTime}>
+              {useMoment(list[0].creationTime, 'LL')}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <View style={[styles.container, { backgroundColor: list[1].color }]}>
+          <Text style={styles.title}>{list[1].title}</Text>
           <Text style={styles.creationTime}>
-            {useMoment(data[0].creationTime, 'LL')}
-          </Text>
-        </View>
-        <View style={[styles.container, { backgroundColor: data[1].color }]}>
-          <Text style={styles.title}>{data[1].title}</Text>
-          <Text style={styles.creationTime}>
-            {useMoment(data[1].creationTime, 'LL')}
+            {useMoment(list[1].creationTime, 'LL')}
           </Text>
         </View>
       </View>
-      <View style={[styles.mainContainer, { backgroundColor: data[2].color }]}>
-        <Text style={styles.mainTitle}>{data[2].title}</Text>
+      <View style={[styles.mainContainer, { backgroundColor: list[2].color }]}>
+        <Text style={styles.mainTitle}>{list[2].title}</Text>
         <Text style={styles.mainCreationTime}>
-          {useMoment(data[2].creationTime, 'LL')}
+          {useMoment(list[2].creationTime, 'LL')}
         </Text>
       </View>
     </View>
