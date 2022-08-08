@@ -2,9 +2,9 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import useSearch from '../../../hooks/useSearch';
 import useSort from '../../../hooks/useSort';
 
-import { NotesState } from '../../../redux/notes/reducer';
 import { RootState } from '../../../redux/store';
 import Dual from './Grid/Dual';
 import Featured from './Grid/Featured';
@@ -30,11 +30,7 @@ const List = ({}: ListProps) => {
     let applyList: NoteProps[] = [...list];
 
     if (searchText) {
-      applyList = applyList.filter(
-        (obj: NoteProps) =>
-          obj.title.toUpperCase().includes(searchText.toUpperCase()) ||
-          obj.content.toUpperCase().includes(searchText.toUpperCase())
-      );
+      applyList = useSearch(applyList, searchText);
       setCurrentList(applyList);
     } else {
       setCurrentList(list);
